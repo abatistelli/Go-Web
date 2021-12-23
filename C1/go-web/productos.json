@@ -1,0 +1,22 @@
+[
+    {
+        "id" : 1,
+        "nombre": "Gin",
+        "color": "blanco",
+        "precio": 870.50,
+        "stock": 4,
+        "codigo": "A32C",
+        "publicado": true,
+        "fechaDeCreacion": "10/10/1978"
+    },
+    {
+        "id" : 2,
+        "nombre": "Fernet",
+        "color": "negro",
+        "precio": 770.50,
+        "stock": 2,
+        "codigo": "B11A",
+        "publicado": false,
+        "fechaDeCreacion": "01/01/1990"
+    }
+]

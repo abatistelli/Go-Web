@@ -2,6 +2,7 @@ package handler
 
 import (
 	"fmt"
+	"os"
 	"strconv"
 
 	"github.com/abatistelli/go-web/C2/C2TT/internal/productos"
@@ -31,7 +32,7 @@ func NewProduct(p productos.Service) *Product {
 func (c *Product) Store() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		token := ctx.Request.Header.Get("token")
-		if token != "0000" {
+		if token != os.Getenv("TOKEN") {
 			ctx.JSON(401, gin.H{
 				"error": "token invaldio",
 			})
@@ -61,7 +62,7 @@ func (c *Product) Store() gin.HandlerFunc {
 func (c *Product) GetAll() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		token := ctx.Request.Header.Get("token")
-		if token != "0000" {
+		if token != os.Getenv("TOKEN") {
 			ctx.JSON(401, gin.H{
 				"error": "token invaldio",
 			})
@@ -84,7 +85,7 @@ func (c *Product) GetAll() gin.HandlerFunc {
 func (c *Product) Update() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		token := ctx.Request.Header.Get("token")
-		if token != "0000" {
+		if token != os.Getenv("TOKEN") {
 			ctx.JSON(401, gin.H{
 				"error": "token invaldio",
 			})
@@ -144,7 +145,7 @@ func (c *Product) Update() gin.HandlerFunc {
 func (c *Product) Delete() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		token := ctx.Request.Header.Get("token")
-		if token != "0000" {
+		if token != os.Getenv("TOKEN") {
 			ctx.JSON(401, gin.H{
 				"error": "token invaldio",
 			})
@@ -169,7 +170,7 @@ func (c *Product) Delete() gin.HandlerFunc {
 func (c *Product) UpdateNameOrPrice() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		token := ctx.Request.Header.Get("token")
-		if token != "0000" {
+		if token != os.Getenv("TOKEN") {
 			ctx.JSON(401, gin.H{
 				"error": "token invaldio",
 			})

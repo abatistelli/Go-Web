@@ -1,0 +1,12 @@
+[
+ {
+  "id": 1,
+  "nombre": "Fernet",
+  "color": "negro",
+  "precio": 770.5,
+  "stock": 2,
+  "codigo": "B11A",
+  "publicado": false,
+  "fechaDeCreacion": "01/01/1990"
+ }
+]

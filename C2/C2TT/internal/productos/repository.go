@@ -1,6 +1,10 @@
 package productos
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/abatistelli/go-web/C2/C2TT/pkg/store"
+)
 
 type Producto struct {
 	Id              int     `json:"id"`
@@ -14,7 +18,8 @@ type Producto struct {
 }
 
 var ps []Producto
-var lastID int
+
+//var lastID int
 
 type Repository interface {
 	GetAll() ([]Producto, error)
@@ -25,24 +30,48 @@ type Repository interface {
 	UpdateNameOrPrice(id int, name string, price float64) (Producto, error)
 }
 
-type repository struct{}
+type repository struct {
+	db store.Store
+}
 
-func NewRepository() Repository {
-	return &repository{}
+func NewRepository(db store.Store) Repository {
+	return &repository{
+		db: db,
+	}
 }
 
 func (r *repository) GetAll() ([]Producto, error) {
+	var ps []Producto
+	r.db.Read(&ps)
 	return ps, nil
 }
 
 func (r *repository) LastID() (int, error) {
-	return lastID, nil
+	var ps []Producto
+	if err := r.db.Read(&ps); err != nil {
+		return 0, err
+	}
+
+	if len(ps) == 0 {
+		return 0, nil
+	}
+	return ps[len(ps)-1].Id, nil
 }
 
 func (r *repository) Store(id int, nombre, color string, precio float64, stock int, codigo string, publicado bool, fechaDeCreacion string) (Producto, error) {
+	//p := Producto{id, nombre, color, precio, stock, codigo, publicado, fechaDeCreacion}
+	//ps = append(ps, p)
+	//lastID = p.Id
+	//return p, nil
+
+	var ps []Producto
+	r.db.Read(&ps)
 	p := Producto{id, nombre, color, precio, stock, codigo, publicado, fechaDeCreacion}
 	ps = append(ps, p)
-	lastID = p.Id
+	if err := r.db.Write(ps); err != nil {
+		return Producto{}, err
+	}
+
 	return p, nil
 }
 

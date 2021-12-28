@@ -1,0 +1,13 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Esta API permite manipular una lista de productos",
+        "title": "ListaDeProductos API",
+        "contact": {
+            "name": "Products Support",
+            "url": "http://www.productos.com"
+        },
+        "version": "1.0"
+    },
+    "paths": {}
+}

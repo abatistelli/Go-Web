@@ -1,0 +1,9 @@
+info:
+  contact:
+    name: Products Support
+    url: http://www.productos.com
+  description: Esta API permite manipular una lista de productos
+  title: ListaDeProductos API
+  version: "1.0"
+paths: {}
+swagger: "2.0"
